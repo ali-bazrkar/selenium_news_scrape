@@ -63,6 +63,6 @@ driver.quit()
 
 df = pd.DataFrame(all_news_list)
 
-df["زمان"] = df["زمان"].apply(view_cleaner)
+df["زمان"] = df["زمان"].apply(time_cleaner)
 
 df.to_excel("news.xlsx", index=False)
