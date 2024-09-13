@@ -11,7 +11,7 @@ by **@ali-bazrkar**
 - **Scraped Website :** ```https://www.shahrekhabar.com/```
 - **Row Count :** 561
 
-### Dataset Group :
+### News Groups :
 - **A)** اخبار-ورزشی
 - **B)** اخبار-سیاسی
 - **C)** اخبار-اقتصادی
