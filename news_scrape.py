@@ -37,9 +37,9 @@ df = pd.DataFrame(all_news_list)
 
 df["زمان"] = df["زمان"].apply(time_cleaner)
 df["عنوان"] = df["عنوان"].apply(title_cleaner)
-df["لینک"] = df["لینک"].apply(lambda item : np.NaN if "بازدید" in item else item)
+df["لینک"] = df["لینک"].apply(lambda item: np.NaN if url not in item else item)
 df.dropna(inplace=True)
 df.reset_index(drop=True, inplace=True)
 
 df.to_excel("news.xlsx", index=False)
-df.to_csv(index=False)
+df.to_csv("news.csv", index=False)
