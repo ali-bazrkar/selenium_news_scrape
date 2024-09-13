@@ -1,47 +1,19 @@
-from datetime import datetime, timedelta
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import numpy as np
 import pandas as pd
-
-
-def time_cleaner(time):
-
-    if "ساعت پیش" in time:
-        time = time.replace("ساعت پیش", "").strip()
-        return datetime.now() - timedelta(hours=time)
-
-    elif "دقیقه پیش" in time:
-        time = time.replace("دقیقه پیش", "").strip()
-        return datetime.now() - timedelta(minutes=time)
-
-    elif "روز پیش" in time:
-        time = time.replace("روز پیش", "").strip()
-        return datetime.now() - timedelta(days=time)
-
-    elif "ثانیه پیش" in time:
-        time = time.replace("ثانیه پیش", "").strip()
-        return datetime.now() - timedelta(seconds=time)
-
-
-def text_cleaner(text):
-    if r"\u200c" in text:
-        return text.replace(r"\u200c", " ")
-    else:
-        return text
-
+from functions import *
 
 all_news_list = []
 
 url = "https://www.shahrekhabar.com"
 
-for group in ["اخبار-ورزشی", "اخبار-سیاسی", "اخبار-اقتصادی", "اخبار-جهان"]:
-    for i in (1, 4):
+for group in ["اخبار-ورزشی", "اخبار-سیاسی", "اخبار-اقتصادی", "اخبار-جهان", "اخبار-پزشکی-سلامت"]:
+    for i in range(1, 4):
         driver = webdriver.Chrome()
+        driver.maximize_window()
         driver.get(f"{url}/{group}?page={i}")
-        news_list = driver.find_elements(By.CSS_SELECTOR, '.col-sm-12 ul.news-list-items li')
+        news_list = driver.find_elements(By.CSS_SELECTOR, "ul.news-list-items li")
 
         for news in news_list:
             my_list = news.text.split("\n")
@@ -59,10 +31,15 @@ for group in ["اخبار-ورزشی", "اخبار-سیاسی", "اخبار-اق
             }
             all_news_list.append(news_dict)
 
-driver.quit()
+        driver.quit()
 
 df = pd.DataFrame(all_news_list)
 
 df["زمان"] = df["زمان"].apply(time_cleaner)
+df["عنوان"] = df["عنوان"].apply(title_cleaner)
+df["لینک"] = df["لینک"].apply(lambda item : np.NaN if "بازدید" in item else item)
+df.dropna(inplace=True)
+df.reset_index(drop=True, inplace=True)
 
 df.to_excel("news.xlsx", index=False)
+df.to_csv(index=False)
