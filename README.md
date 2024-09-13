@@ -7,11 +7,11 @@ by **@ali-bazrkar**
 - Problem-Solving
 - Program Debugging
 
-## Dataset Information :
+### Dataset Information :
 - Scraped Website : ```https://www.shahrekhabar.com/```
 - Row Count : 561
 
-## Dataset Group :
+### Dataset Group :
 - A) اخبار-ورزشی
 - B) اخبار-سیاسی
 - C) اخبار-اقتصادی
