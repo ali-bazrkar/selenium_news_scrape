@@ -8,12 +8,12 @@ by **@ali-bazrkar**
 - Program Debugging
 
 ### Dataset Information :
-- Scraped Website : ```https://www.shahrekhabar.com/```
-- Row Count : 561
+- **Scraped Website :** ```https://www.shahrekhabar.com/```
+- **Row Count :** 561
 
 ### Dataset Group :
-- A) اخبار-ورزشی
-- B) اخبار-سیاسی
-- C) اخبار-اقتصادی
-- D) اخبار-جهان 
-- E) اخبار-پزشکی-سلامت
+- **A)** اخبار-ورزشی
+- **B)** اخبار-سیاسی
+- **C)** اخبار-اقتصادی
+- **D)** اخبار-جهان 
+- **E)** اخبار-پزشکی-سلامت
